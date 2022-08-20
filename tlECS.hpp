@@ -14,7 +14,7 @@ namespace tl
 	public:
 		virtual ~Component() = default;
 	};
-	
+
 	class Entity
 	{
 	public:
@@ -90,4 +90,3 @@ namespace tl
 		}
 	};
 }
-

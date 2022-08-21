@@ -23,7 +23,7 @@ namespace tl
 		const Id id;
 
 		inline Entity() : id{ generateId() } {}
-		inline Entity(Entity&&) : id{ generateId() } {}
+		inline Entity(Entity&&) = default;
 		Entity(const Entity&) = delete;
 		~Entity() = default;
 		Entity& operator=(Entity&&) = default;
@@ -58,7 +58,7 @@ namespace tl
 		static inline Id generateId()
 		{
 			static Id lastId{};
-			return lastId++;
+			return ++lastId;
 		}
 
 		template<typename T>

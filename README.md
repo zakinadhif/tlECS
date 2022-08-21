@@ -1,3 +1,3 @@
 # tlECS
 
-## Simple Entity Component System
+## Lightweight Entity Component System

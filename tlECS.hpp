@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <type_traits>
 #include <unordered_map>
 #include <memory>
 #include <vector>
@@ -32,7 +33,7 @@ namespace tl
 		template<typename T>
 		T& access()
 		{
-			return dynamic_cast<T&>(*components.at(std::type_index{ typeid(T) }).get());
+			return static_cast<T&>(*components.at(std::type_index{ typeid(T) }).get());
 		}
 
 		template<typename T>
@@ -64,6 +65,8 @@ namespace tl
 		template<typename T>
 		void singleAttach()
 		{
+			static_assert(std::is_base_of<Component, T>::value, "Components attached to entity must derive from the `Component` class");
+
 			if (components.find(std::type_index{ typeid(T) }) == components.end())
 			{
 				components[std::type_index{ typeid(T) }] = std::make_unique<T>();

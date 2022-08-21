@@ -32,7 +32,7 @@ namespace tl
 		template<typename T>
 		T& access()
 		{
-			return dynamic_cast<T&>(*components.at(std::type_index{ typeid(T) }).get());
+			return static_cast<T&>(*components.at(std::type_index{ typeid(T) }).get());
 		}
 
 		template<typename T>

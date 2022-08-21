@@ -18,8 +18,12 @@ namespace tl
 	class Entity
 	{
 	public:
-		Entity() = default;
-		Entity(Entity&&) = default;
+		using Id = unsigned long long;
+
+		const Id id;
+
+		inline Entity() : id{ generateId() } {}
+		inline Entity(Entity&&) : id{ generateId() } {}
 		Entity(const Entity&) = delete;
 		~Entity() = default;
 		Entity& operator=(Entity&&) = default;
@@ -50,6 +54,12 @@ namespace tl
 		}
 	private:
 		std::unordered_map<std::type_index, std::unique_ptr<Component>> components;
+
+		static inline Id generateId()
+		{
+			static Id lastId{};
+			return lastId++;
+		}
 
 		template<typename T>
 		void singleAttach()

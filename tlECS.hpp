@@ -18,7 +18,7 @@ namespace tl
 	class Entity
 	{
 	public:
-		using Id = unsigned long long; m
+		using Id = unsigned long long;
 
 		const Id id;
 
